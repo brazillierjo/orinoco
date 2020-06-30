@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/style.css">
+    <title>ORINOCO | Expert en nounours !</title>
+    <meta name="description" content="ORINOCO est l'expert de la vente en ligne d'ours en peluche">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="bloc-page">
+
+        <header class="topbar">
+            <h1>
+                <img class="header-logo" src="img/logo-orinoco.png" alt="Logo ORINOCO">
+            </h1>
+            <nav class="navbar">
+                <img class="icon-header" src="./img/home-solid.svg" /><a href="index.html" class="nav-link">Accueil</a>
+                <img class="icon-header" src="./img/shopping-basket-solid.svg" /><a href="panier.html" class="nav-link"><i class="fas fa-shopping-basket"></i>Panier</a>
+            </nav>
+        </header>
+
+        <section id="container-cart">
+            <div class="en-tete">
+                <div>Produit</div>
+                <div>Nom</div>
+                <div>Quantité</div>
+                <div>Prix</div>
+            </div>
+            <div id="panier">
+            </div>
+            <div id="total">Prix total : <span id="totalPrice"></span> €</div>
+            <div id="remove-cart">
+                <p>Cliquez ici pour vider le panier :</p><img src="./img/trash.svg" class="trash-logo" alt="clean cart">
+            </div>
+        </section>
+
+        <section id="formulaire">
+            <form id="contact" method="post">
+                <h3>Informations d'expédition</h3>
+                <div class="container-input">
+                    <label for="firstName">Nom :</label>
+                    <input placeholder="Nom*" type="text" id="firstName" name="firstName" maxlength="20" required autofocus>
+                    <small></small><br>
+                    <label for="lastName">Prénom :</label>
+                    <input placeholder="Prénom*" type="text" id="lastName" name="lastName" maxlength="20" required autofocus>
+                    <small></small><br>
+                    <label for="email">Adresse mail :</label>
+                    <input placeholder="Adresse e-mail*" type="email" id="email" name="email" required>
+                    <small></small><br>
+                    <label for="address">Adresse :</label>
+                    <input placeholder="Rue et numéro*" type="text" id="address" name="address" required>
+                    <small></small><br>
+                    <label for="city">Ville :</label>
+                    <input placeholder="Ville*" type="text" id="city" name="city" required>
+                    <small></small><br>
+                </div>
+                <input type="submit" id="submit" value="Envoyer" />
+            </form>
+        </section>
+
+        <footer>
+            <p>Site réalisé par BRAZILLIER Johan. Projet 5 <a href="https://openclassrooms.com/">d'Openclassrooms</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="panier.js"></script>
+
+</body>
+
+</html>

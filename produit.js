@@ -89,23 +89,22 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
     // on crée un objet par article grâce à notre classe
     let produit = new newProduct(productId, productName, productNumber, productPrice, productImg);
 
-    // on crée une fontion qui écoute le bouton au click, et on assigne la paire clé/valeur
     document.getElementById('cart-button').addEventListener('click', () => {
-        //on fait appel à la fonction addElement créée plus bas
         addElement('Produit', produit);
     });
 });
 
 // fonction addElement permettant de stocker dans le storage
 function addElement(key, value) {
+    let arrayStorage = [];
     let storage = window.localStorage;
-    // si aucune clé n'existe, on la crée au format JSON
-    if (storage.getItem(key) === null) {
+    if (!storage.getItem(key)) {
         let produitString = JSON.stringify(value);
+        arrayStorage.push(produitString);
         storage.setItem(key, produitString);
-    } else { //si une clé éxiste, on incrémente la quantité et on écrase la clé
+    } else {
         value.productNumber += 1;
-        produit = JSON.stringify(value);
+        let produit = JSON.stringify(value);
         storage.setItem(key, produit);
     }
 }

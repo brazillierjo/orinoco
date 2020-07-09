@@ -8,9 +8,10 @@ let connectApi = async (url) => {
     };
 };
 
+let storageKey = localStorage.getItem("Produit");
+let objectStorage = JSON.parse(storageKey);
+
 for (let i = 0; i < localStorage.length; i++) {
-    let storageKey = localStorage.getItem("Produit");
-    let objectStorage = JSON.parse(storageKey);
     let productId = objectStorage[i].productId;
     let productName = objectStorage[i].productName;
     let productNumber = objectStorage[i].productNumber;

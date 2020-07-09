@@ -101,10 +101,11 @@ function addElement(key, value) {
     if (!storage.getItem(key)) {
         let produitString = JSON.stringify(value);
         arrayStorage.push(produitString);
-        storage.setItem(key, produitString);
+        storage.setItem(key, arrayStorage);
     } else {
         value.productNumber += 1;
         let produit = JSON.stringify(value);
-        storage.setItem(key, produit);
+        arrayStorage.push(produit);
+        storage.setItem(key, arrayStorage);
     }
 }

@@ -57,7 +57,7 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
     //on crée une balise bouton et son id, puis on ajoute le contenu voulu
     let cartProduct = document.createElement("button");
     cartProduct.setAttribute("id", "cart-button");
-    cartProduct.innerHTML = `<a href="panier.html">Ajouter au panier</a>`;
+    cartProduct.innerHTML = `Ajouter au panier`;
 
     //on imbrique les variables entre elles
     sectionProduct.appendChild(productTitle);
@@ -102,8 +102,9 @@ function addElement(key, value) {
         let produitString = JSON.stringify(value);
         arrayStorage.push(produitString);
         storage.setItem(key, arrayStorage);
+        console.log(arrayStorage)
     } else {
-        value.productNumber += 1;
+        value.productNumber++;
         let produit = JSON.stringify(value);
         arrayStorage.push(produit);
         storage.setItem(key, arrayStorage);

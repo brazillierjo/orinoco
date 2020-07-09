@@ -4,7 +4,7 @@ let urlParams = new URLSearchParams(queryString);
 let id = urlParams.get('id');
 
 // requête fetch //
-let connectApi = async(url) => {
+let connectApi = async (url) => {
     try {
         let reponse = await fetch(url);
         return reponse.json();
@@ -12,11 +12,11 @@ let connectApi = async(url) => {
         throw (e)
     };
 };
+
 // lien vers l'API //
 let productDetails = connectApi(`http://localhost:3000/api/teddies/${id}`);
 
-
-productDetails.then(function(result) { //après avoir parametré l'appel de l'API en fonction de l'id selectionné, on crée une fonction result
+productDetails.then(function (result) { //après avoir parametré l'appel de l'API en fonction de l'id selectionné, on crée une fonction result
 
     //on récupère l'élement conteneur
     let sectionProduct = document.getElementById("product-details");
@@ -68,29 +68,31 @@ productDetails.then(function(result) { //après avoir parametré l'appel de l'AP
     optionChoiceDiv.appendChild(optionChoice);
     sectionProduct.appendChild(cartProduct);
 
-    //on ajoute au localstorage l'id, la quantité et le prix du produit en panier :
-
+    //on ajoute au localstorage l'id, la quantité, le prix... du produit en panier :
     //pour cela on crée une classe newProduct
     class newProduct {
-        constructor(productId, productNumber, productPrice) {
+        constructor(productId, productName, productNumber, productPrice, productImg) {
             this.productId = productId;
+            this.productName = productName;
             this.productNumber = productNumber;
             this.productPrice = productPrice;
+            this.productImg = productImg;
         }
     }
 
     //on initialise la quantité, l'id et le prix
-    let productNumber = 1;
     let productId = id;
+    let productName = result.name;
+    let productNumber = 1;
     let productPrice = result.price / 100;
+    let productImg = result.imageUrl;
     // on crée un objet par article grâce à notre classe
-    let produit = new newProduct(productId, productNumber, productPrice);
+    let produit = new newProduct(productId, productName, productNumber, productPrice, productImg);
 
     // on crée une fontion qui écoute le bouton au click, et on assigne la paire clé/valeur
     document.getElementById('cart-button').addEventListener('click', () => {
-        let key = 'Produit_' + result.name;
         //on fait appel à la fonction addElement créée plus bas
-        addElement(key, produit);
+        addElement('Produit', produit);
     });
 });
 
@@ -103,7 +105,7 @@ function addElement(key, value) {
         storage.setItem(key, produitString);
     } else { //si une clé éxiste, on incrémente la quantité et on écrase la clé
         value.productNumber += 1;
-        let produit = JSON.stringify(value);
+        produit = JSON.stringify(value);
         storage.setItem(key, produit);
     }
 }

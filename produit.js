@@ -96,17 +96,19 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
 
 // fonction addElement permettant de stocker dans le storage
 function addElement(key, value) {
-    let arrayStorage = [];
     let storage = window.localStorage;
     if (!storage.getItem(key)) {
+        let arrayStorage = [];
         let produitString = JSON.stringify(value);
         arrayStorage.push(produitString);
         storage.setItem(key, arrayStorage);
-        console.log(arrayStorage)
+        console.log('IF' + arrayStorage)
     } else {
         value.productNumber++;
+        let arrayStorage = [];
         let produit = JSON.stringify(value);
         arrayStorage.push(produit);
         storage.setItem(key, arrayStorage);
+        console.log('ELSE' + arrayStorage)
     }
 }

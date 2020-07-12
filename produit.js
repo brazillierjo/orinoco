@@ -86,29 +86,30 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
     let productNumber = 1;
     let productPrice = result.price / 100;
     let productImg = result.imageUrl;
-    // on crée un objet par article grâce à notre classe
-    let produit = new newProduct(productId, productName, productNumber, productPrice, productImg);
+
+    let newProduit = new newProduct(productId, productName, productNumber, productPrice, productImg);
 
     document.getElementById('cart-button').addEventListener('click', () => {
-        addElement('Produit', produit);
-    });
-});
 
-// fonction addElement permettant de stocker dans le storage
-function addElement(key, value) {
-    let storage = window.localStorage;
-    if (!storage.getItem(key)) {
-        let arrayStorage = [];
-        let produitString = JSON.stringify(value);
-        arrayStorage.push(produitString);
-        storage.setItem(key, arrayStorage);
-        console.log('IF' + arrayStorage)
-    } else {
-        value.productNumber++;
-        let arrayStorage = [];
-        let produit = JSON.stringify(value);
-        arrayStorage.push(produit);
-        storage.setItem(key, arrayStorage);
-        console.log('ELSE' + arrayStorage)
-    }
-}
+        let getItem = null;
+        let product = [];
+
+        // Je fais une condition pour voir si dans le localSTorage il existe une clé "Product"
+        if (localStorage.getItem('Produits')) {
+            // Si oui, j'ajoute la valeur de cette clé dans "getItem"
+            getItem = JSON.parse(localStorage.getItem('Produits'))
+        }
+
+        // Si getItem est faux alors je push dans mon tableau vide le produit en question
+        if (!getItem) {
+            product.push(newProduit)
+        } else {
+            // Sinon je copie mon localStorage dans mon tableau vide puis je push le nouveau produit
+            product = getItem
+            product.push(newProduit)
+        }
+
+        // Et enfin je lance l'action pour ajouter dans mon localstorage le tableau
+        localStorage.setItem("Produits", JSON.stringify(product))
+    });
+})

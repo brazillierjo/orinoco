@@ -94,7 +94,7 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
         let getItem = null;
         let product = [];
 
-        // Je fais une condition pour voir si dans le localSTorage il existe une clé "Product"
+        // Je fais une condition pour voir si dans le localSTorage il existe une clé "Produits"
         if (localStorage.getItem('Produits')) {
             // Si oui, j'ajoute la valeur de cette clé dans "getItem"
             getItem = JSON.parse(localStorage.getItem('Produits'))
@@ -109,7 +109,7 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
             product.push(newProduit)
         }
 
-        // Et enfin je lance l'action pour ajouter dans mon localstorage le tableau
+        // Puis l'action pour ajouter dans mon localstorage le tableau
         localStorage.setItem("Produits", JSON.stringify(product))
     });
 })

@@ -57,7 +57,7 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
     //on crée une balise bouton et son id, puis on ajoute le contenu voulu
     let cartProduct = document.createElement("button");
     cartProduct.setAttribute("id", "cart-button");
-    cartProduct.innerHTML = `Ajouter au panier`;
+    cartProduct.innerHTML = `<a href="panier.html">Ajouter au panier</a>`;
 
     //on imbrique les variables entre elles
     sectionProduct.appendChild(productTitle);

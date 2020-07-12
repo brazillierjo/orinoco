@@ -1,27 +1,19 @@
-// requête fetch //
-let connectApi = async (url) => {
-    try {
-        let reponse = await fetch(url);
-        return reponse.json();
-    } catch (e) {
-        throw (e)
-    };
-};
-
-let storageKey = localStorage.getItem("Produit");
+let storageKey = localStorage.getItem("Produits");
 let objectStorage = JSON.parse(storageKey);
+let products = [];
 
-for (let i = 0; i < localStorage.length; i++) {
-    let productId = objectStorage[i].productId;
-    let productName = objectStorage[i].productName;
-    let productNumber = objectStorage[i].productNumber;
-    let productPrice = objectStorage[i].productPrice;
-    let productImg = objectStorage[i].productImg;
+objectStorage.forEach(function (element) {
+
+    let productId = element.productId;
+    let productImg = element.productImg;
+    let productName = element.productName;
+    let productNumber = element.productNumber;
+    let productPrice = element.productPrice;
     console.log(productId)
+    console.log(productImg)
     console.log(productName)
     console.log(productNumber)
     console.log(productPrice)
-    console.log(productImg)
 
     //on crée une variable qui calcule le prix total d'un produit en fonction de son prix et sa quantité
     let pricePerProduct = productPrice * productNumber;
@@ -62,7 +54,9 @@ for (let i = 0; i < localStorage.length; i++) {
     let totalPanier = document.getElementById("totalPrice");
     let totalPrice = productPrice * productNumber;
     totalPanier.innerHTML = totalPrice;
-}
+
+    products.push(productId)
+});
 
 // création d'une fonciton qui permet de clear le storage au click sur une image
 document.getElementById("remove-cart").addEventListener('click', () => {
@@ -222,8 +216,10 @@ myForm.addEventListener('submit', function (e) {
             .then(res => res.json())
             .then(res => {
                 console.log(res);
+                let totalPanier = document.getElementById("totalPrice");
+                let totalPrice = totalPanier.innerHTML;
                 let objectSessionStorage = {
-                    prix: totalSent,
+                    prix: totalPrice,
                     prenom: myForm.lastName.value,
                     orderId: res.orderId
                 };

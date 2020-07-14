@@ -13,6 +13,20 @@ let connectApi = async (url) => {
     };
 };
 
+//on ajoute au localstorage l'id, la quantité, le prix... du produit en panier :
+//pour cela on crée une classe newProduct
+class Product {
+    constructor(productId, productName, productNumber, productPrice, productImg) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productNumber = productNumber;
+        this.productPrice = productPrice;
+        this.productImg = productImg;
+    }
+}
+
+let productKey = "Produits";
+
 // lien vers l'API //
 let productDetails = connectApi(`http://localhost:3000/api/teddies/${id}`);
 
@@ -57,7 +71,7 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
     //on crée une balise bouton et son id, puis on ajoute le contenu voulu
     let cartProduct = document.createElement("button");
     cartProduct.setAttribute("id", "cart-button");
-    cartProduct.innerHTML = `<a href="panier.html">Ajouter au panier</a>`;
+    cartProduct.innerHTML = `Ajouter au panier`;
 
     //on imbrique les variables entre elles
     sectionProduct.appendChild(productTitle);
@@ -68,18 +82,6 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
     optionChoiceDiv.appendChild(optionChoice);
     sectionProduct.appendChild(cartProduct);
 
-    //on ajoute au localstorage l'id, la quantité, le prix... du produit en panier :
-    //pour cela on crée une classe newProduct
-    class newProduct {
-        constructor(productId, productName, productNumber, productPrice, productImg) {
-            this.productId = productId;
-            this.productName = productName;
-            this.productNumber = productNumber;
-            this.productPrice = productPrice;
-            this.productImg = productImg;
-        }
-    }
-
     //on initialise la quantité, l'id et le prix
     let productId = id;
     let productName = result.name;
@@ -87,29 +89,34 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
     let productPrice = result.price / 100;
     let productImg = result.imageUrl;
 
-    let newProduit = new newProduct(productId, productName, productNumber, productPrice, productImg);
+    let newProduit = new Product(productId, productName, productNumber, productPrice, productImg);
 
     document.getElementById('cart-button').addEventListener('click', () => {
 
         let getItem = null;
-        let product = [];
+        let products = [];
 
         // Je fais une condition pour voir si dans le localSTorage il existe une clé "Produits"
-        if (localStorage.getItem('Produits')) {
+        if (localStorage.getItem(productKey)) {
             // Si oui, j'ajoute la valeur de cette clé dans "getItem"
-            getItem = JSON.parse(localStorage.getItem('Produits'))
+            getItem = JSON.parse(localStorage.getItem(productKey))
         }
 
         // Si getItem est faux alors je push dans mon tableau vide le produit en question
         if (!getItem) {
-            product.push(newProduit)
+            products.push(newProduit)
         } else {
             // Sinon je copie mon localStorage dans mon tableau vide puis je push le nouveau produit
-            product = getItem
-            product.push(newProduit)
+            products = getItem
+            const foundProduct = products.find(element => element.productId === newProduit.productId);
+            if (foundProduct) {
+                foundProduct.productNumber += 1;
+            } else {
+                products.push(newProduit);
+            }   
         }
 
         // Puis l'action pour ajouter dans mon localstorage le tableau
-        localStorage.setItem("Produits", JSON.stringify(product))
+        localStorage.setItem(productKey, JSON.stringify(products))
     });
 })

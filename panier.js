@@ -9,11 +9,6 @@ objectStorage.forEach(function (element) {
     let productName = element.productName;
     let productNumber = element.productNumber;
     let productPrice = element.productPrice;
-    console.log(productId)
-    console.log(productImg)
-    console.log(productName)
-    console.log(productNumber)
-    console.log(productPrice)
 
     //on crée une variable qui calcule le prix total d'un produit en fonction de son prix et sa quantité
     let pricePerProduct = productPrice * productNumber;
@@ -51,12 +46,24 @@ objectStorage.forEach(function (element) {
     cartProduct.appendChild(productQuantity);
     cartProduct.appendChild(priceInCart);
 
-    let totalPanier = document.getElementById("totalPrice");
-    let totalPrice = productPrice * productNumber;
-    totalPanier.innerHTML = totalPrice;
-
     products.push(productId)
 });
+
+let totalPrice = 0;
+
+for (let i = 0; i < objectStorage.length; i++) {
+    let produit = objectStorage[i];
+    let quantity = produit.productNumber;
+    let price = produit.productPrice;
+    let productPrice = quantity * price;
+    totalPrice += productPrice;
+}
+
+/*const reducer = (accumulator, currentValue) => accumulator + currentValue.productNumber * currentValue.productPrice;
+let totalPrice2 = objectStorage.reduce(reducer, 0);*/
+
+let totalPanier = document.getElementById("totalPrice");
+totalPanier.innerHTML = totalPrice;
 
 // création d'une fonciton qui permet de clear le storage au click sur une image
 document.getElementById("remove-cart").addEventListener('click', () => {

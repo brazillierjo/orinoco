@@ -12,3 +12,5 @@ spanPrix.innerHTML = prix;
 
 let spanOrderId = document.getElementById('order-id');
 spanOrderId.innerHTML = orderId;
+
+// supprimer localstorage au clic

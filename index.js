@@ -14,7 +14,6 @@ const productsData = connectApi(`http://localhost:3000/api/teddies`);
 productsData.then((data) => {
     //incrémentation de chaque produit existant dans l'API
     for (let i = 0; i < data.length; i++) {
-        console.log(data);
         elementAdd(data[i]);
     }
 });

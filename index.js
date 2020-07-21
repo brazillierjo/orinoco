@@ -34,7 +34,7 @@ const elementAdd = (data) => {
     const productPrice = document.createElement("p");    // on crée un <p> contenant le prix
     productPrice.textContent = data.price / 100 + "€"; //on ajoute au DOM le prix du produit en question
     const buttonProduct = document.createElement("div");
-    buttonProduct.innerHTML = `<a href=produit.html?id=${data._id}><button class="button-product" type="button">Personnaliser</button></a>`; // on ajoute un lien qui contient un id "dynamique" pour la redirection
+    buttonProduct.innerHTML = `<a href=produit.html?id=${data._id}><button class="button-product" type="button">Plus d'infos</button></a>`; // on ajoute un lien qui contient un id "dynamique" pour la redirection
 
     sectionProduct.appendChild(newDiv);  //on ajoute la div principale à la balise section récupérée plus tôt
     newDiv.appendChild(newSecondDiv);  // on ajoute la sous div à la div principale

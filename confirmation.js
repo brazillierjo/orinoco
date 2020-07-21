@@ -1,5 +1,6 @@
 let key = sessionStorage.getItem("infoCustomer");
 let parsedKey = JSON.parse(key);
+console.log(parsedKey);
 let prenom = parsedKey.prenom;
 let prix = parsedKey.prix;
 let orderId = parsedKey.orderId;

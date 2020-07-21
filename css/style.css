@@ -91,7 +91,7 @@ h2 {
     width: 60%;
     border-radius: 4px;
     color: black;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
 }
 
 .button-product:hover,
@@ -116,8 +116,30 @@ footer p {
 /********* Page produit *********/
 
 #product-details {
+    margin: auto;
+    width: 90%;
+    border: 1px solid black;
     text-align: center;
-    font-size: 1.3em;
+    font-size: 1.1em;
+    display: flex;
+}
+
+.section-img {
+    width: 50%;
+}
+
+.product-infos {
+    width: 50%;
+}
+
+.section-img {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-product {
+    width: 100%;
 }
 
 .title-product {
@@ -125,40 +147,32 @@ footer p {
     text-decoration: underline;
 }
 
-.img-product {
-    border: 1px solid black;
-    width: 70%;
-    margin-bottom: 80px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .description-product {
-    padding-bottom: 50px;
+    padding-bottom: 20px;
     width: 70%;
     margin-left: auto;
     margin-right: auto;
     text-align: justify;
     font-family: 'Pangolin', cursive;
-    font-size: 1.3em;
+    font-size: 1.1em;
 }
 
 .price-product {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-family: 'Pangolin', cursive;
-    font-size: 1.3em;
+    font-size: 1.1em;
 }
 
 .text-option {
     font-family: 'Pangolin', cursive;
-    font-size: 1.3em;
+    font-size: 1.1em;
 }
 
 .color-product {
     font-family: 'Pangolin', cursive;
     font-size: 1em;
     width: 200px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 
@@ -166,6 +180,16 @@ footer p {
 
 
 /************** PANIER **************/
+
+#empty-cart {
+    background-color: white;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1.5em;
+    font-family: 'Pangolin', cursive;
+}
 
 .cart-container {
     margin: 8px;
@@ -207,7 +231,7 @@ footer p {
     cursor: pointer;
 }
 
-.en-tete {
+#en-tete {
     border-radius: 5px;
     margin-left: auto;
     margin-right: auto;

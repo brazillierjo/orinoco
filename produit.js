@@ -34,6 +34,10 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
 
     //on récupère l'élement conteneur
     let sectionProduct = document.getElementById("product-details");
+    let sectionImg = document.createElement("div");
+    sectionImg.classList.add('section-img')
+    let sectionDetails = document.createElement("div");
+    sectionDetails.classList.add('product-infos');
 
     //on crée une balise et sa classe, puis on ajoute le contenu voulu
     let productTitle = document.createElement("h1");
@@ -41,8 +45,7 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
     productTitle.textContent = result.name;
 
     //on crée une balise et sa classe, puis on ajoute le contenu voulu
-    let imgProduct = document.createElement("div");
-    imgProduct.innerHTML = `<img src="${result.imageUrl}" alt="Image" class="img-product">`;
+    sectionImg.innerHTML = `<p><img src="${result.imageUrl}" alt="Image" class="img-product"></p>`;
 
     //on crée une balise et sa classe, puis on ajoute le contenu voulu
     let descriptionProduct = document.createElement("div");
@@ -74,13 +77,15 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
     cartProduct.innerHTML = `<a href="panier.html">Ajouter au panier</a>`;
 
     //on imbrique les variables entre elles
-    sectionProduct.appendChild(productTitle);
-    sectionProduct.appendChild(imgProduct);
-    sectionProduct.appendChild(descriptionProduct);
-    sectionProduct.appendChild(priceProduct);
-    sectionProduct.appendChild(optionChoiceDiv);
+
+    sectionProduct.appendChild(sectionImg);
+    sectionProduct.appendChild(sectionDetails);
+    sectionDetails.appendChild(productTitle);
+    sectionDetails.appendChild(descriptionProduct);
+    sectionDetails.appendChild(priceProduct);
+    sectionDetails.appendChild(optionChoiceDiv);
     optionChoiceDiv.appendChild(optionChoice);
-    sectionProduct.appendChild(cartProduct);
+    sectionDetails.appendChild(cartProduct);
 
     //on initialise la quantité, l'id et le prix
     let productId = id;

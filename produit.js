@@ -74,7 +74,7 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
     //on crée une balise bouton et son id, puis on ajoute le contenu voulu
     let cartProduct = document.createElement("button");
     cartProduct.setAttribute("id", "cart-button");
-    cartProduct.innerHTML = `<a href="panier.html">Ajouter au panier</a>`;
+    cartProduct.innerHTML = `Ajouter au panier`;
 
     //on imbrique les variables entre elles
 
@@ -98,6 +98,8 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
 
     document.getElementById('cart-button').addEventListener('click', () => {
 
+        alert(`Votre ${result.name} a bien été ajouté à votre panier !`)
+
         let getItem = null;
         let products = [];
 
@@ -118,7 +120,7 @@ productDetails.then(function (result) { //après avoir parametré l'appel de l'A
                 foundProduct.productNumber += 1;
             } else {
                 products.push(newProduit);
-            }   
+            }
         }
 
         // Puis l'action pour ajouter dans mon localstorage le tableau

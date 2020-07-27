@@ -115,12 +115,6 @@ if (objectStorage === null) {
     });
 
     // création d'un variable par input qui contient un test qui vérifie s'il y a une correspondance entre un texte et une expression
-    let testNom = myRegexText.test;
-    let testPrenom = myRegexText.test;
-    let testEmail = myRegexEmail.test;
-    let testAdresse = myRegexAddress.test;
-    let testVille = myRegexText.test;
-
     function validateInput(input, regex, name, errorMessage) {
         testInput = regex.test(input.value);
         let small = input.nextElementSibling;
@@ -145,13 +139,7 @@ if (objectStorage === null) {
 
     myForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        if (
-            testNom == false ||
-            testAdresse == false ||
-            testEmail == false ||
-            testPrenom == false ||
-            testVille == false
-        ) {
+        if (testInput == false) {
             e.preventDefault();
         } else if ((contact = '')) {
             e.preventDefault();

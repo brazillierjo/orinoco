@@ -136,7 +136,7 @@ if (objectStorage === null) {
     let myForm = document.getElementById('contact');
     let contact;
     let order;
-
+    let testInput;
     myForm.addEventListener('submit', function (e) {
         e.preventDefault();
         if (testInput == false) {
